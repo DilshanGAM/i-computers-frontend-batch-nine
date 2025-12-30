@@ -41,7 +41,6 @@ export default function LoginPage() {
 
 				//window.location.href = "/admin/"
 				navigate("/admin/")
-				
 			}else{
 				//redirect to home page "/"
 			}

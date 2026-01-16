@@ -116,31 +116,31 @@ export default function AdminProductsPage() {
 			<table className="min-w-[1100px] w-full text-sm relative">
 				<thead className="sticky top-0 z-10 bg-white">
 					<tr className="border-b border-secondary/10">
-						<th className="px-5 py-3  text-left text-xs font-semibold uppercase tracking-wide text-secondary/70">
+						<th className="px-5 py-3  text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">
 							Product ID
 						</th>
-						<th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-tight text-secondary/70">
+						<th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-tight text-secondary/70">
 							Name
 						</th>
-						<th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-secondary/70">
+						<th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">
 							Price
 						</th>
-						<th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-secondary/70">
+						<th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">
 							Labelled
 						</th>
-						<th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-secondary/70">
+						<th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">
 							Category
 						</th>
-						<th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-secondary/70">
+						<th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">
 							Image
 						</th>
-						<th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-secondary/70">
+						<th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">
 							Visibility
 						</th>
-						<th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-secondary/70">
+						<th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">
 							Brand
 						</th>
-						<th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-secondary/70">
+						<th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">
 							Model
 						</th>
 					</tr>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import uploadFile from "../../utils/mediaUpload";
 
 export default function AdminAddProductPage(){
     
@@ -15,10 +16,12 @@ export default function AdminAddProductPage(){
     const [brand , setBrand] = useState("Standard");
     const [model , setModel] = useState("");
     const [isVisible , setIsVisible] = useState(true);
+    const [files , setFiles] = useState([]);
     const navigate = useNavigate()
 
-    async function handleAddProduct(){
+    async function handleAddProduct(){      
         try{
+
 
             const token = localStorage.getItem("token");
 
@@ -27,6 +30,18 @@ export default function AdminAddProductPage(){
                 window.location.href = "/login";
                 return;
             }
+
+            const fileUploadPromises = [];
+
+            for(let i=0 ; i<files.length ; i++){
+
+                fileUploadPromises[i] = uploadFile(files[i])
+
+            }
+
+            const imageURLs = await Promise.all(fileUploadPromises);
+
+
             //"sound,base,audio,bluetooth"
             //altNames.split(",") => ["sound","base","audio","bluetooth"]
             await axios.post( import.meta.env.VITE_API_URL + "/products",{
@@ -36,6 +51,7 @@ export default function AdminAddProductPage(){
                 price : price,
                 labelledPrice: labelledPrice,
                 altNames : altNames.split(","),
+                images: imageURLs,
                 category: category,
                 brand: brand,
                 model: model,
@@ -68,6 +84,10 @@ export default function AdminAddProductPage(){
             <div className="w-full h-[170px] flex flex-col">
                 <label className="font-bold ml-2">Description</label>
                 <textarea value={description} onChange={(e)=>{setDescription(e.target.value)}}  placeholder="Ex: Laptop" className="border-4 border-accent rounded-[10px] h-[100px] p-2 m-2 focus:outline-white"/>
+            </div>
+            <div className="w-full h-[120px] flex flex-col">
+                <label className="font-bold ml-2">Images</label>
+                <input multiple type="file" onChange={(e)=>{setFiles(e.target.files)}} className="border-4 border-accent rounded-[10px] h-[50px] p-2 m-2 focus:outline-white"/>
             </div>
             <div className="w-full h-[120px] flex flex-col">
                 <label className="font-bold ml-2">Alternative Names (Comma Separated)</label>

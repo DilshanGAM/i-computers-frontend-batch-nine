@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import getFormattedPrice from "../../utils/price-format";
+import axios from "axios";
 
 const sampleProducts = [
 	{
@@ -82,12 +83,23 @@ const sampleProducts = [
 
 export default function AdminProductsPage() {
 	const [products, setProducts] = useState(sampleProducts);
+	useEffect(() => {
+		const token = localStorage.getItem("token");
+
+		axios
+			.get(import.meta.env.VITE_API_URL + "/products", {
+				headers: {
+					Authorization: "Bearer " + token,
+				},
+			})
+			.then((response) => {
+				setProducts(response.data);
+				console.log(response.data);
+			});
+	}, []);
 
 	return (
 		<div className="w-full h-full overflow-y-scroll ">
-			{/* Container */}
-
-			{/* Header bar */}
 			<div className="flex items-center justify-between gap-3 px-5 py-4 bg-primary/60 border-b border-secondary/10">
 				<div>
 					<h2 className="text-lg font-semibold text-secondary">Products</h2>
@@ -101,12 +113,10 @@ export default function AdminProductsPage() {
 				</span>
 			</div>
 
-			{/* Table */}
-
 			<table className="min-w-[1100px] w-full text-sm relative">
 				<thead className="sticky top-0 z-10 bg-white">
 					<tr className="border-b border-secondary/10">
-						<th className="px-5 py-3 border text-left text-xs font-semibold uppercase tracking-wide text-secondary/70">
+						<th className="px-5 py-3  text-left text-xs font-semibold uppercase tracking-wide text-secondary/70">
 							Product ID
 						</th>
 						<th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-tight text-secondary/70">
@@ -217,7 +227,7 @@ export default function AdminProductsPage() {
 			{/* Footer */}
 			<div className="px-5 py-3 bg-white border-t border-secondary/10 text-xs text-secondary/60">
 				Tip: Scroll horizontally on small screens to view all columns.
-			</div>    
+			</div>
 			<Link
 				to="/admin/add-product"
 				className="text-white bg-accent w-[50px] h-[50px] flex justify-center items-center text-2xl rounded-[20px] hover:rounded-full fixed bottom-12 right-16"

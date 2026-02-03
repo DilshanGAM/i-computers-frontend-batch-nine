@@ -21,7 +21,15 @@ export default function AdminAddProductPage(){
 
     async function handleAddProduct(){      
         try{
-
+            if(name == ""){
+                toast.error("Product name cannot be empty");
+                return;
+            }
+            if(description == ""){
+                toast.error("Product description cannot be empty");
+                return;
+            }
+            
 
             const token = localStorage.getItem("token");
 

@@ -21,6 +21,10 @@ export default function AdminAddProductPage(){
 
     async function handleAddProduct(){      
         try{
+            // if(files.length >5){
+            //     toast.error("You can upload maximum 5 images");
+            //     return;
+            // }
             if(name == ""){
                 toast.error("Product name cannot be empty");
                 return;
